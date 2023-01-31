@@ -19,8 +19,8 @@ export class AppController {
   }
 
   @Post()
-  async createMessage(@Body('number') number: number) {
-    const newMessage = await this.appService.createRoulette(number);
+  async createMessage() {
+    const newMessage = await this.appService.createRoulette();
     return newMessage;
   }
 }

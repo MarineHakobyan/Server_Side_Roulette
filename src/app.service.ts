@@ -27,7 +27,8 @@ export class AppService {
     throw new NotFoundException('Could not find the roulette');
   }
 
-  async createRoulette(number: number) {
+  async createRoulette() {
+    const number = Math.floor(Math.random() * 38);
     const newNumber = this.rouletteRepository.create({ number });
     await this.rouletteRepository.save(newNumber);
     return newNumber;
