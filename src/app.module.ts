@@ -4,11 +4,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import * as Joi from '@hapi/joi';
 import { DatabaseModule } from './database/database.module';
-import { MessageModule } from './roulette-part/roulette.module';
+import Message from './database/roulette.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 // configure the schema validation using Joi
 @Module({
   imports: [
+    TypeOrmModule.forFeature([Message]),
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         POSTGRES_HOST: Joi.string().required(),
@@ -20,7 +22,6 @@ import { MessageModule } from './roulette-part/roulette.module';
       }),
     }),
     DatabaseModule,
-    MessageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
