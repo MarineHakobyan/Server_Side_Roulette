@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import * as Joi from '@hapi/joi';
 import { DatabaseModule } from './database/database.module';
-import { MessageModule } from './roulette-part/roulette.module';
+import { RouletteModule } from './roulette/roulette.module';
 
 // configure the schema validation using Joi
 @Module({
@@ -20,7 +20,7 @@ import { MessageModule } from './roulette-part/roulette.module';
       }),
     }),
     DatabaseModule,
-    MessageModule,
+    RouletteModule,
   ],
   controllers: [AppController],
   providers: [AppService],

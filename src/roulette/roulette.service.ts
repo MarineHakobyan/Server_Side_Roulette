@@ -9,27 +9,9 @@ export class RouletteService {
     private rouletteRepository: Repository<Roulette>,
   ) {}
 
-  async getAllRoulettes() {
-    const roulettes = await this.rouletteRepository.find();
-
-    return roulettes;
-  }
-
-  async getRouletteById(id: number) {
-    const roulette = await this.rouletteRepository.findOne({
-      where: { id: id },
-    });
-
-    if (roulette) {
-      return roulette;
-    }
-
-    throw new NotFoundException('Could not find the roulette');
-  }
-
-  async createRoulette(number: number) {
+  async createRoulette() {
+    const number = Math.floor(Math.random() * 38);
     const newNumber = this.rouletteRepository.create({ number });
-    await this.rouletteRepository.save(newNumber);
     return newNumber;
   }
 }
